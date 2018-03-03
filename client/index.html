@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+    <head>
+        <title>MMOChess</title>
+        <meta name="description" content="MMOChess is a free html5 multiple chess arena. Attempt to control the land">
+        <style>
+        @font-face {
+            font-family: 'Zorque';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Zorque'), url(/zorque.woff) format('woff2');
+        }
+        body, html, #game {
+            width:100%;
+            height:100%;
+            overflow:hidden;
+            margin:0;
+            padding:0;
+            font-family: 'Zorque';
+            color:#666;
+            font-weight: lighter;
+        }
+
+        * {
+        -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+             -khtml-user-select: none; /* Konqueror HTML */
+               -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                    user-select: none; /* Non-prefixed version, currently
+                                          supported by Chrome and Opera */
+        }
+
+        #sidebox {
+            display: block;
+            width:16rem;
+            height:100vh;
+            position: fixed;
+            right:0px;
+            top:0px;
+            background-color:#222;
+            color:#fefefe
+        }
+
+        #sideboxmain {
+            width: 100%;
+            height:34vh;
+            padding:1rem;
+        }
+
+        #sideboxstats {
+            display:none;
+        }
+
+        #sideboxmain h2 {
+            color:#fefefe;
+            font-weight: 100;
+        }
+
+        #chat {
+            width: 100%;
+            height:60vh;
+            display:none;
+        }
+
+        #chatbox {
+            overflow: auto;
+            height:45vh;
+            width: 100%;
+            font-family: sans-serif;
+            padding:0.5rem;
+        }
+        #chatinput {
+            height:15vh;
+            width: 100%;
+        }
+        #chattextinput {
+            height:8vh;
+            width: 100%;
+            margin: 0px;
+            border-radius: 0;
+            outline: 0;
+        }
+        #chatsubmit {
+            height:7vh;
+            width: 100%;
+            background-color:#237CE7;
+            margin: 0px;
+            border-radius: 0;
+            border:0px;
+            outline: 0;
+            font-size: 18px;
+            font-family: 'Zorque';
+            color: #fff;
+            letter-spacing: 0.3rem;
+        }
+        #chatsubmit:hover {
+            cursor:pointer;
+        }
+        #showsidebox, #hidesidebox {
+            position: fixed;
+            top:0px;
+            right:0px;
+            width:40px;
+            height: 30px;
+            color:#fff;
+            font-size:32px;
+            text-shadow:-1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+        }
+        #showsidebox {
+            display: block;
+        }
+        #showsidebox:hover, #hidesidebox:hover {
+            cursor: pointer;
+        }
+        </style>
+    </head>
+    <body>
+        <canvas id="game"></canvas>
+        <div id="showsidebox">&#9776;</div>
+        <div id="sidebox">
+            <div id="hidesidebox">&#9776;</div>
+            <div id="sideboxmain">
+                <h2>mmochess</h2>
+                <hr>
+                <div id="sound_enabler">
+                    <h2><label for="sound_enable_box">sound</label><input type="checkbox" id="sound_enable_box" checked="true"></h2>
+                </div>
+                <div id="sideboxstats">
+                    <h2>Killed: <span id="killed_amount">0</span></h2>
+                    <h2>Lost: <span id="lost_amount">0</span></h2>
+                    <h2>Annexed: <span id="takeover_amount">0</span></h2>
+                </div>
+                <h2 id="help">help</h2>
+            </div>
+            <div id="chat">
+                <div id="chatbox"></div>
+                <div id="chatinput">
+                    <textarea id="chattextinput"></textarea>
+                    <button id="chatsubmit">send</button>
+                </div>
+            </div>
+        </div>
+        <script src="http://127.0.0.1:3080/socket.io/socket.io.js"></script>
+        <!--<script src="http://b8d7cabe.ngrok.io/socket.io/socket.io.js"></script>-->
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="/ion.sound.min.js"></script>
+        <script src="/stats.min.js"></script>
+        <script src="/game.js"></script>
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-42844259-6', 'auto');
+        ga('send', 'pageview');
+
+        </script>
+    </body>
+</html>

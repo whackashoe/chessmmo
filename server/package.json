@@ -1,0 +1,13 @@
+{
+    "name": "mmochess-server",
+    "version": "0.0.1",
+    "description": "",
+    "main": "app.js",
+    "author": "whackashoe",
+    "dependencies": {
+        "socket.io":   "latest",
+        "mysql":       "latest",
+        "underscore":  "latest",
+        "moment":      "latest"
+    }
+}
